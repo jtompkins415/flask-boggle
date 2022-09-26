@@ -12,3 +12,15 @@ debug = DebugToolbarExtension(app)
 
 
 boggle_game = Boggle()
+
+@app.route('/', methods=['GET'])
+def get_board():
+    '''Render Boggle board and add it to the session'''
+
+    board = boggle_game.make_board()
+
+    session['BOARD'] = board
+
+    return render_template('boggle_game.html', board=board)
+
+    

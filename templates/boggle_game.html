@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Flask Boggle{% endblock %}
+
+{% block content%}
+<h1>Flask Boggle</h1>
+<div>
+        {% for row in board%}
+        <div>{{row}}</div>
+        {% endfor %}
+    
+</div>
+
+<form>
+    <label for="guess">Words: </label>
+    <input type="text" name="guess" id="user_guess" placeholder="Enter Words here">
+    <button>Submit</button>
+</form>
+
+{% endblock %}
