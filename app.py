@@ -24,19 +24,35 @@ def get_board():
     '''Render Boggle board and add it to the session'''
 
     board = boggle_game.make_board()
+    session['board'] = board
+    highscore = session.get('highscore', 0)
+    nplays = session.get('nplays', 0)
 
-    session['BOARD'] = board
+    session['board'] = board
 
-    return render_template('boggle_game.html', board=board)
+    return render_template('base.html', board=board, highscore=highscore, nplays=nplays)
 
 
 @app.route('/', methods=['POST'])
 def check_word():
     '''Handles form submission and confirms if submitted word is valid'''
 
-    guess_word = request.args['user_guess']
-    board = session['BOARD']
+    guess_word = request.args['word']
+    board = session['board']
 
     resp = boggle_game.check_valid_word(board, guess_word)
 
     return jsonify({'result': resp})
+
+@app.route('/post-score', methods=['POST'])
+def score_board():
+    '''Handles score tracking'''
+
+    score = request.json['score']
+    highscore = session.get('highscore', 0)
+    nplays = session.get('nplays', 0)
+
+    session['nplays'] = nplays + 1
+    session['highscore'] = max(score, highscore)
+
+    return jsonify(brokenrecored = score > highscore)

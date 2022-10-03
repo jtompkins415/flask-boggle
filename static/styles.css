@@ -1,4 +1,31 @@
 h1 {
-    
+    display: flex;
     justify-content: center;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.highscore {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.add-word {
+    display: flex;
+    justify-content: center;
+    align-self: center ;
+    margin-top: 10px;
 }

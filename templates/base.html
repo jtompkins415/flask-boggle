@@ -5,16 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
-    <title>{% block title %}{% endblock %}</title>
+    <title>Flask Boggle</title>
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
-</body>
+  <h1>Flask Boggle</h1>
+
+  <section id="boggle">
+  <table class='board'>
+      <tbody>
+          {% for row in board%}
+          <tr>
+              {% for cell in row %}
+              <td>{{cell}}</td>
+              {% endfor %}
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+  
+  <div class="highscore">
+      High Score:
+      <b>{{highscore}}</b> in {{nplays}} plays
+  </div>
+  
+  <div class ="score">
+      Score: <b class="score">0</b>
+  </div>
+  <div class="score">
+      Timer: <b class="timer"></b>
+  </div>
+  
+  <form class="add-word">
+      <label for="word">Words: </label>
+      <input type="text" name="word" class='word'autofocus placeholder="Enter Words here">
+      <button>Submit</button>
+  </form>
+  
+  <div class="msg">
+  </div>
+  
+  <ul class="words">    
+  </ul>
+  </section>
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script
   src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous"></script>
 <script src="/static/app.js"></script>
+<script>let game = new BoggleGame("boggle", 60)</script>
+</body>
 </html>
